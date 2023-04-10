@@ -21,7 +21,7 @@ function RegisterEventPage () {
         axios.request(config)
         .then((data) => data)
         .then(tourData => {
-            setTour(tourData?.data)
+            setTour(tourData?.data[0])
         })
         .catch((error) => console.error(error))
     },[]);
@@ -29,7 +29,7 @@ function RegisterEventPage () {
     console.log(tour)
     return (
         <>
-            <RegisterEventForm tourId={tour[0].id} tourName={tour[0].name} />
+            <RegisterEventForm tourId={tour.id} tourName={tour.name} />
         </>
     );
 }
