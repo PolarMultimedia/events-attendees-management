@@ -32,12 +32,12 @@ class Layout extends Component {
                             <div className="flex flex-1 items-center">
                             <div className="flex w-full items-center justify-between md:w-auto">
                                 <Link to="/">
-                                <span className="sr-only">Administracion de Eventos</span>
+                                    <span className="sr-only">Administracion de Eventos</span>
                                 </Link>
                                 <div className="-mr-2 flex items-center md:hidden">
-                                <Popover.Button className="focus-ring-inset inline-flex items-center justify-center rounded-md bg-azul_abalat p-2 text-white focus:outline-none focus:ring-2 focus:ring-white">
+                                <Popover.Button className="focus-ring-inset inline-flex items-center justify-center rounded-md bg-white p-1 text-gray-900 focus:outline-none focus:ring-2 focus:ring-white">
                                     <span className="sr-only">Open main menu</span>
-                                    <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                                    <Bars3Icon className="h-10 w-10" aria-hidden="true" />
                                 </Popover.Button>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@ class Layout extends Component {
                                 <Link
                                     key={item.name}
                                     to={item.href}
-                                    className="text-base font-medium text-azul_abalat hover:text-gray-300"
+                                    className="text-base font-medium text-gray-900 hover:text-gray-300"
                                 >
                                     {item.name}
                                 </Link>
@@ -54,7 +54,7 @@ class Layout extends Component {
                             </div>
                             </div>
                         </nav>
-                        <hr className='bg-azul_abalat w-full h-2 lg:h-4' />
+                        <hr className='bg-gray-900 w-full h-2 lg:h-4' />
                         </div>
             
                         <Transition
@@ -103,7 +103,7 @@ class Layout extends Component {
                         <div className="mx-auto max-w-md px-4 sm:max-w-7xl sm:px-6 lg:px-8 lg:pt-10">
                             <div className="mt-12 border-t border-gray-200 py-8">
                                 <p className="text-base text-gray-400 xl:text-center">
-                                &copy; 2023 2022 Polar Multimedia Todos los derechos reservados.
+                                &copy; 2023 Polar Multimedia S de RL Todos los derechos reservados.
                                 </p>
                             </div>
                         </div>
