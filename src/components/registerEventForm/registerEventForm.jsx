@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 
@@ -414,18 +415,10 @@ function RegisterEventForm ({tourId, tourName}) {
     const [selectedMonth, setSelectedMonth] = useState(months[0]);
     const [selectedYear, setSelectedYear] = useState(years[0]);
     const [selectedHour, setSelectedHour] = useState(hours[0]);
-    const [selectedMinute, setSelectedMinute] = useState(minutes[1]);
+    const [selectedMinute, setSelectedMinute] = useState(minutes[0]);
     const url = "http://localhost:3000/addEvent";
 
-    const config = {
-        method: 'post',
-        url: url,
-        data: JSON.stringify(upload),
-        headers: { 
-          'Content-Type': 'application/json',
-          "Access-Control-Allow-Origin": "*"
-        },
-    };
+    
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -444,7 +437,27 @@ function RegisterEventForm ({tourId, tourName}) {
         setIsSubmiting(true);
     };
 
+    const handleReset = (e) => {
+        e.preventDefault();
+        setFormValues(initialValues);
+        setIsSubmiting(false);
+        setSuccess(false);
+        setUpload(uploadValues);
+        setSelectedDay(days[0]);
+        setSelectedMonth(months[0]);
+    }
+
     useEffect(() => {
+        const config = {
+            method: 'post',
+            url: url,
+            data: JSON.stringify(upload),
+            headers: { 
+              'Content-Type': 'application/json',
+              "Access-Control-Allow-Origin": "*"
+            },
+        };
+
         if(Object.keys(formErrors).length === 0 && isSubmiting){
             console.log(upload);
             axios.request(config)
@@ -455,7 +468,7 @@ function RegisterEventForm ({tourId, tourName}) {
             })
             .catch(err => console.error(err))
         }
-    }, [formErrors]);
+    }, [formErrors, isSubmiting, upload]);
 
     const validate = (values) => {
         const errors = {};
@@ -791,23 +804,36 @@ function RegisterEventForm ({tourId, tourName}) {
                         </div>
                     </div>
                 </form>
-                <div className="bg-gray-50 px-4 py-3 text-center sm:px-6">
-                    <button
-                        onClick={handleSubmit}
-                        className="inline-flex justify-center rounded-md border border-transparent bg-gray-900 py-2 px-4 text-sm lg:text-2xl lg:font-semibold font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
-                        >
-                        Registrar Evento
-                    </button>
-                </div>
+                {
+                    isSubmiting ? null :
+                    <div className="bg-gray-50 px-4 py-3 text-center sm:px-6">
+                        <button
+                            onClick={handleSubmit}
+                            className="inline-flex justify-center rounded-md border border-transparent bg-gray-900 py-2 px-4 text-sm lg:text-2xl lg:font-semibold font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+                            >
+                            Registrar Evento
+                        </button>
+                    </div>
+                }
                 {
                     isSuccess? (
-                        <div className="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
-                            <div className="flex">
-                                <div>
-                                    <p className="font-bold">Evento registrado exitosamente en el tour {tourName}</p>
+                        <>
+                            <div className="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+                                <div className="flex">
+                                    <div>
+                                        <p className="font-bold">Evento registrado exitosamente en el tour {tourName}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <div className="bg-gray-50 px-4 py-3 text-center sm:px-6">
+                                <button
+                                    onClick={handleReset}
+                                    className="inline-flex justify-center rounded-md border border-transparent bg-gray-900 py-2 px-4 text-sm lg:text-2xl lg:font-semibold font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+                                    >
+                                    Agregar otro evento
+                                </button>
+                            </div>
+                        </>
                     ) : null
                 }
             </div>
