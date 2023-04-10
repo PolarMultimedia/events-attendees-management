@@ -4,3 +4,5 @@ export { default as EventsPage } from './events';
 export { default as AttendeesPage } from './attendees';
 export { default as RegisterTourPage } from './addTour';
 export { default as RegisterEventPage } from './addEvent';
+export { default as ScanQRPage } from './scanQR';
+export { default as AttendeeInfoPage } from './attendeeInfo';

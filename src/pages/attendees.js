@@ -11,8 +11,8 @@ function Attendees() {
     const [eventCity, setEventCity] = useState('');
     const [tourId, setTourId] = useState('');
     const url = "http://localhost:3000/getAttendees/"+event_id;
-    const urlTourName = "http://localhost:3000/getTour/"+tourId;
     const urlEventCity = "http://localhost:3000/getEvent/"+event_id;
+    const urlTourName = "http://localhost:3000/getTour/"+tourId;
 
     
 
@@ -42,6 +42,7 @@ function Attendees() {
             },
         };
 
+        console.log('url tour', urlTourName)
         axios.request(config)
         .then((data) => data)
         .then(attendees => {
@@ -65,14 +66,14 @@ function Attendees() {
             .catch((error) => console.error(error))
         )
         .catch((error) => console.error(error))
-    }, [url, urlEventCity, urlTourName]);
+    }, []);
 
     return (
         <>
             <div className="text-center px-4 pt-16 pb-10 sm:px-2 lg:px-8 lg:pt-24 lg:pb-10">
                 <h2 className="text-3xl font-bold tracking-tight text-morado_abalat sm:text-4xl">Lista de Invitados a "{tourName} {eventCity}"</h2>
             </div>
-            <AttendeesListComponent list={list} />
+            <AttendeesListComponent list={list} eventId={event_id}/>
             <div className="mt-10 flex items-center justify-center py-2 space-x-2">
                 <Link
                     to={"/importar-invitados/"+event_id}
