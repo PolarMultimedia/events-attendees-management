@@ -6,7 +6,8 @@ import {
   ToursPage,
   EventsPage,
   AttendeesPage,
-  RegisterTourPage
+  RegisterTourPage,
+  RegisterEventPage
 } from './pages';
 
 
@@ -19,6 +20,7 @@ function App() {
           <Route path='/eventos/:tour_id' element={ <EventsPage /> } />
           <Route path='/invitados/:event_id' element={ <AttendeesPage /> } />
           <Route path='/agregar-tour' element={ <RegisterTourPage /> } />
+          <Route path='/agregar-evento/:tour_id' element={ <RegisterEventPage /> } />
         </Routes>
     </Layout>
   );
