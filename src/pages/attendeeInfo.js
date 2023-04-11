@@ -23,11 +23,12 @@ function AttendeeInfoPage () {
         .then(response => response.data[0])
         .then(res => {
             setAttendee(res)
+            console.log('event_id', attendee.event_id)
             setEventId(attendee.event_id)
         })
         .then()
         .catch(err => console.error(err));
-    },[])
+    },[]);
     return (
         <>
             <AttendeeCard attendee={attendee} />

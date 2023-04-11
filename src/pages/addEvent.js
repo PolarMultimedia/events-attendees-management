@@ -28,7 +28,6 @@ function RegisterEventPage () {
         .catch((error) => console.error(error))
     },[url]);
 
-    console.log(tour)
     return (
         <>
             <RegisterEventForm tourId={tour.id} tourName={tour.name} />

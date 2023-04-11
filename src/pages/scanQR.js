@@ -62,7 +62,7 @@ function ScanQRPage () {
             .catch((error) => console.error(error))
         )
         .catch((error) => console.error(error))
-    }, [url, urlEventCity, urlTourName]);
+    }, []);
 
     return (
         <>

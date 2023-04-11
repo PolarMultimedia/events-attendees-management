@@ -9,42 +9,12 @@ function Scanner ({listAttendees}) {
     }
     const [scannedAttendee, setScannedAttendee] = useState({});
     const [scannedCode, setScannedCode] = useState('');
-    const [list] = useState(listAttendees);
-    const [validQR, setValidQR] = useState(false);
     const [scanning, setScanning] = useState(true);
     const [upload, setUpload] = useState(uploadValues);
     const [success, setSuccess] = useState(false);
     const url = 'http://localhost:3000/registerAttendance/'+setScannedAttendee.id;
 
-    const searchAttendee = (code) => {
-        setScannedAttendee(listAttendees.find(attendee => attendee.code === code));
-        setUpload({
-            user_id: scannedAttendee.id
-        })
-    }
     
-    const validateQR = (text) => {
-        /* listAttendees.forEach(attendee => {
-            if(attendee.code === text){ 
-                setValidQR(true);
-            }
-        });     */
-        if (validQR) {
-            setScannedCode(text);
-            searchAttendee(scannedCode);
-        }
-    }
-
-    const handleError = (err) => {
-        alert('error: '+err.message);
-    }
-
-    function handleScan(data) {
-        if(data != null) {
-            setScanning(false);
-            validateQR(data.text);
-        }
-    }
 
     useEffect(() =>{
         const config = {
@@ -55,9 +25,24 @@ function Scanner ({listAttendees}) {
               'Content-Type': 'application/json',
               "Access-Control-Allow-Origin": "*"
             },
-        };
+        }
 
-        if(!scanning && validQR) {
+        const searchAttendee = (code) => {
+            setScannedAttendee(listAttendees.find(attendee => attendee.code === code));
+            console.log('scanned',listAttendees)
+            setUpload({
+                user_id: scannedAttendee.id
+            })
+        }
+        
+        const validateQR = (text) => {
+                setScannedCode(text);
+                searchAttendee(scannedCode);
+        }
+    
+
+
+        if(!scanning) {
             axios.request(config)
             .then(response => response.data)
             .then(res => {
@@ -65,8 +50,19 @@ function Scanner ({listAttendees}) {
                 setSuccess(true);
             })
             .catch(err => console.error(err));
+        } 
+    }, []);
+
+    const handleError = (err) => {
+        alert('error: '+err.message);
+    }
+
+    const handleScan = (data) => {
+        if(data != null) {
+            setScanning(false);
         }
-    }, [url, scanning, validQR, upload, list]);
+    } 
+    
 
     return (
         <>
@@ -76,20 +72,23 @@ function Scanner ({listAttendees}) {
                 delay={delay}
                 onError={handleError}
                 onResult={handleScan}
-                /> : 
+                />
+                : 
                 <div className='justify-center mt-6'>
                     <h1 className='text-center'>QR Escaneado</h1>
+                    <h2 className='text-center'>Invitado:  "Nombre" {"Apellido"}</h2>
+                    <h2 className='text-center'>Cedula profesional: {"cedula prefesional"}</h2>
                 </div>
                 }  
-                {
+{/*                 {
                     success ?
                     <div className='justify-center mt-6'>
-                        <h1 className='text-center'>Se ha registrado la asistencia de {scannedAttendee.name} {scannedAttendee.lastname}</h1>
+                        <h1 className='text-center'>Se ha registrado la asistencia de {"Nombre"} {"Apellido"}</h1>
                         <div className="px-4 py-3 text-center sm:px-6">
-                            <p>Cédula Profesional: {scannedAttendee.professional_code}</p>
+                            <p>Cédula Profesional: {"cedula prefesional"}</p>
                         </div>
                     </div> : null
-                }
+                } */}
             </div>
         </>
     );

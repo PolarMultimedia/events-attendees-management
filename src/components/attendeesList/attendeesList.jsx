@@ -1,40 +1,75 @@
 import React from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 function AttendeesListComponent ({list, eventId}) {
+
+    const url = "http://localhost:3000/registerAttendance";
+
+    const registerAttendance = async(attendant_id) => {
+        
+        axios.request(url,{
+            method: 'post',
+            url: url,
+            headers: { 
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "*"
+            },
+            data: JSON.stringify({
+                "user_id": ""+attendant_id
+            })
+        })
+        .then(response => response)
+        .then(res => res.data[0])
+        .then(resp => console.log(resp))
+        .then(window.location.reload(true))
+        .catch(err => console.error(err))
+
+        return false;
+    } 
     return (
         <>
            { list.length !== 0 ? 
            <>
-            <div className="mt-10 flex items-center justify-center py-2 space-x-2">
-                    <Link
-                        to={"/escanear/"+eventId}
-                        className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-amber-400 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
-                    >
-                        Escanear QR
-                    </Link>
-                </div>
                 <div className="px-4 py-3 text-right sm:px-6 ">
                     <div className="overflow-hidden bg-white shadow sm:rounded-md">
                         <ul className="divide-y divide-gray-200">
                             {list.map((attendee) => (
                             <li key={attendee.id}>
-                                <Link to={'/invitado/'+attendee.id} className="block hover:bg-gray-50">
-                                    <div className="flex items-center px-4 py-4 sm:px-6">
-                                        <div className="flex min-w-0 flex-1 items-center">
-                                            <div className="min-w-0 flex-1 px-4 md:grid md:gap-4">
-                                                <div>
-                                                    <p className="truncate text-sm text-start font-medium text-gray-900">{attendee.name} {attendee.lastname}</p>
-                                                    <p className="mt-2 flex items-center text-sm text-gray-500">Cedula Profesional: {attendee.professional_code}</p>
-                                                    { attendee.attendance?
-                                                        <p className="mt-2 flex items-center text-sm text-green-500"> Entrada registrada</p> 
-                                                        : <p className="mt-2 flex items-center text-sm text-red-500"> Entrada sin registrar</p> 
-                                                    }
-                                                </div>
+                                <div className="flex items-center px-4 py-4 sm:px-6">
+                                    <div className="flex min-w-0 flex-1 items-center">
+                                        <div className="min-w-0 flex-1 px-4 md:grid md:gap-4">
+                                            <div>
+                                                <p className="truncate text-sm text-start font-medium text-gray-900">{attendee.name} {attendee.lastname}</p>
+                                                <p className="mt-2 flex items-center text-sm text-gray-500">Cedula Profesional: {attendee.professional_code}</p>
+                                                { attendee.attendance?
+                                                    <p className="mt-2 flex items-center text-sm text-green-500"> Entrada registrada</p> 
+                                                    : <p className="mt-2 flex items-center text-sm text-red-500"> Entrada sin registrar</p> 
+                                                }
                                             </div>
                                         </div>
+                                            {
+                                                attendee.attendance? 
+                                                null :
+                                                <div>
+                                                    <button 
+                                                    className="
+                                                    rounded-full bg-indigo-600 
+                                                    px-4 py-2.5 
+                                                    text-sm font-semibold 
+                                                    text-white shadow-sm 
+                                                    hover:bg-indigo-500 
+                                                    focus-visible:outline 
+                                                    focus-visible:outline-2 
+                                                    focus-visible:outline-offset-2 
+                                                    focus-visible:outline-indigo-600"
+                                                    type='button'
+                                                    onClick={() => registerAttendance(attendee.id)}
+                                                    >Registrar asistencia</button>
+                                                </div>
+                                            }
                                     </div>
-                                </Link>
+                                </div>
                             </li>
                             ))}
                         </ul>

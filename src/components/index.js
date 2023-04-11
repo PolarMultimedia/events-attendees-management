@@ -4,5 +4,7 @@ export { default as EventsList } from './events-list/events-list';
 export { default as AttendeesListComponent } from './attendeesList/attendeesList';
 export { default as RegisterTourForm } from './registerTourForm/registerTourForm';
 export { default as RegisterEventForm } from './registerEventForm/registerEventForm';
+export { default as RegisterAttendeeForm } from './registerAttendeeForm/registerAttendeeForm';
 export { default as ScannerQRComponent } from './QRscanner/qrscanner';
+export { default as SearchBox } from './searchBox/searchBox';
 export { default as AttendeeCard } from './attendeeCard/attendeeCard';
