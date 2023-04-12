@@ -8,3 +8,4 @@ export { default as RegisterAttendeeForm } from './registerAttendeeForm/register
 export { default as ScannerQRComponent } from './QRscanner/qrscanner';
 export { default as SearchBox } from './searchBox/searchBox';
 export { default as AttendeeCard } from './attendeeCard/attendeeCard';
+export { default as AttendeesImporter } from './attendeeImporter/attendeeImporter';
