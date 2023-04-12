@@ -90,7 +90,7 @@ function Attendees() {
                         scanning?
                         <>  
 
-                            <ScannerQRComponent />
+                            <ScannerQRComponent listAttendees={list}/>
                             <div className="mt-10 flex items-center justify-center py-2 space-x-2">
                                 <button 
                                     type="button" 

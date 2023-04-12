@@ -4,54 +4,60 @@ import { QrReader } from 'react-qr-reader';
 
 function Scanner ({listAttendees}) {
     const delay = 100000;
-    const uploadValues = {
-        user_id: ''
-    }
     const [scannedAttendee, setScannedAttendee] = useState({});
-    const [scannedCode, setScannedCode] = useState('');
     const [scanning, setScanning] = useState(true);
-    const [upload, setUpload] = useState(uploadValues);
-    const [success, setSuccess] = useState(false);
-    const url = 'http://localhost:3000/registerAttendance/'+setScannedAttendee.id;
+    const [unregistered, setUnregistered] = useState(false);
+    const [alreadyScanned, setAlreadyScanned] = useState(false);
+    const url = 'http://localhost:3000/registerAttendance/';
 
+    const searchAttendee = (code) => {
+        const attendee = listAttendees.find(attendee => attendee.code === code);
+        if (!attendee) {
+            setUnregistered(true);
+        } else {
+            setScannedAttendee(attendee);
+            if (attendee.attendance) {
+                setAlreadyScanned(true);
+                console.log('asistencia ya registrada');
+            } else {
+                registerAttendance(attendee.id);
+            }
+        }
+    }
+
+    const resetScanner = () => {
+        setAlreadyScanned(false);
+        setScanning(true);
+        setUnregistered(false);
+        setScannedAttendee({});
+    }
+
+    useEffect(() => {
+       
+    },[scannedAttendee, alreadyScanned, scanning, unregistered])
     
 
-    useEffect(() =>{
-        const config = {
+    const registerAttendance = (attendee_id) => {
+        console.log('scanned attendee',scannedAttendee.id);
+        axios.request(url,{
             method: 'post',
             url: url,
-            data: JSON.stringify(upload),
             headers: { 
-              'Content-Type': 'application/json',
-              "Access-Control-Allow-Origin": "*"
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "*"
             },
-        }
-
-        const searchAttendee = (code) => {
-            setScannedAttendee(listAttendees.find(attendee => attendee.code === code));
-            console.log('scanned',listAttendees)
-            setUpload({
-                user_id: scannedAttendee.id
+            data: JSON.stringify({
+                "user_id": ""+attendee_id
             })
-        }
-        
-        const validateQR = (text) => {
-                setScannedCode(text);
-                searchAttendee(scannedCode);
-        }
-    
+        })
+        .then(response => response)
+        .then(res => res.data[0])
+        .then(resp => console.log(resp))
+        .then(window.location.reload(true))
+        .catch(err => console.error(err))
 
-
-        if(!scanning) {
-            axios.request(config)
-            .then(response => response.data)
-            .then(res => {
-                console.log(res);
-                setSuccess(true);
-            })
-            .catch(err => console.error(err));
-        } 
-    }, []);
+        return false;
+    }
 
     const handleError = (err) => {
         alert('error: '+err.message);
@@ -60,6 +66,8 @@ function Scanner ({listAttendees}) {
     const handleScan = (data) => {
         if(data != null) {
             setScanning(false);
+            searchAttendee(data.text);
+            data = null;
         }
     } 
     
@@ -68,27 +76,39 @@ function Scanner ({listAttendees}) {
         <>
             <div className='pt-6 pb-6 pr-4 pl-4 bg-gray-200'>
                 { scanning?
-                <QrReader
-                delay={delay}
-                onError={handleError}
-                onResult={handleScan}
-                />
-                : 
-                <div className='justify-center mt-6'>
-                    <h1 className='text-center'>QR Escaneado</h1>
-                    <h2 className='text-center'>Invitado:  "Nombre" {"Apellido"}</h2>
-                    <h2 className='text-center'>Cedula profesional: {"cedula prefesional"}</h2>
-                </div>
-                }  
-{/*                 {
-                    success ?
+                    <QrReader
+                    delay={delay}
+                    onError={handleError}
+                    onResult={handleScan}
+                    />
+                    : null
+                } 
+               {
+                unregistered?
                     <div className='justify-center mt-6'>
-                        <h1 className='text-center'>Se ha registrado la asistencia de {"Nombre"} {"Apellido"}</h1>
-                        <div className="px-4 py-3 text-center sm:px-6">
-                            <p>Cédula Profesional: {"cedula prefesional"}</p>
-                        </div>
-                    </div> : null
-                } */}
+                        <h1 className='text-center'>Boleto invalido</h1>
+                    </div>
+                    :   null
+               } 
+               {
+                alreadyScanned ?
+                    <div className='justify-center mt-6'>
+                        <h2 className='text-center text-bold text-red-500'> Asistencia ya registrada </h2>  
+                        <h1 className='text-center'>QR Escaneado</h1>
+                        <h2 className='text-center'>Invitado:  {scannedAttendee.name} {scannedAttendee.lastname}</h2>
+                        <h2 className='text-center'>Cedula profesional: {scannedAttendee.professional_code} </h2>
+                    </div>
+                    : null
+               }
+            </div>
+            <div className="mt-10 flex items-center justify-center py-2 space-x-2">
+                <button 
+                    type="button" 
+                    onClick={() => resetScanner()}
+                    className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-amber-400 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
+                >
+                    Escanear otro QR
+                </button>
             </div>
         </>
     );
