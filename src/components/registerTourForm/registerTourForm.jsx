@@ -10,7 +10,7 @@ function RegisterTourForm () {
     const [formErrors, setFormErrors] = useState({});
     const [isSubmiting, setIsSubmiting] = useState(false)
     const [isSuccess, setSuccess] = useState(false);
-    const url = "http://localhost:3000/addTour";
+    const url = "http://192.168.1.19:3000/addTour";
 
     const handleChange = (e) => {
         const { name, value } = e.target;

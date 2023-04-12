@@ -9,8 +9,8 @@ function Events() {
     const { tour_id } = useParams();
     const [events, setEvents] = useState([]);
     const [tourName, setTourName] = useState('');
-    const url = "http://localhost:3000/getEvents/"+tour_id;
-    const urlTourName = "http://localhost:3000/getTour/"+tour_id;
+    const url = "http://192.168.1.19:3000/getEvents/"+tour_id;
+    const urlTourName = "http://192.168.1.19:3000/getTour/"+tour_id;
 
     useEffect(() => {
         const config = {

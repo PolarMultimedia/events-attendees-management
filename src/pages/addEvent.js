@@ -6,7 +6,7 @@ import { RegisterEventForm } from '../components';
 function RegisterEventPage () {
     const { tour_id } = useParams();
     const [tour, setTour] = useState([]);
-    const url = "http://localhost:3000/getTour/"+tour_id;
+    const url = "http://192.168.1.19:3000/getTour/"+tour_id;
 
 
 

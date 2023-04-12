@@ -8,7 +8,7 @@ function Scanner ({listAttendees}) {
     const [scanning, setScanning] = useState(true);
     const [unregistered, setUnregistered] = useState(false);
     const [alreadyScanned, setAlreadyScanned] = useState(false);
-    const url = 'http://localhost:3000/registerAttendance/';
+    const url = 'http://192.168.1.19:3000/registerAttendance/';
 
     const searchAttendee = (code) => {
         const attendee = listAttendees.find(attendee => attendee.code === code);
@@ -95,7 +95,7 @@ function Scanner ({listAttendees}) {
                     <div className='justify-center mt-6'>
                         <h2 className='text-center text-bold text-red-500'> Asistencia ya registrada </h2>  
                         <h1 className='text-center'>QR Escaneado</h1>
-                        <h2 className='text-center'>Invitado:  {scannedAttendee.name} {scannedAttendee.lastname}</h2>
+                        <h2 className='text-center'>Invitado:  {scannedAttendee.name}</h2>
                         <h2 className='text-center'>Cedula profesional: {scannedAttendee.professional_code} </h2>
                     </div>
                     : null

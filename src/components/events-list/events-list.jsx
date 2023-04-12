@@ -20,8 +20,7 @@ function EventsList ({events, tourName}) {
                                         <div className="flex min-w-0 flex-1 items-center">
                                             <div className="min-w-0 flex-1 px-4 md:grid md:gap-4">
                                                 <div>
-                                                    <p className="truncate text-sm text-start font-medium text-gray-900">{event.city}</p>
-                                                    <p className="mt-2 flex items-center text-sm text-gray-500">{event.date}</p>
+                                                    <p className="truncate text-sm text-start font-medium text-gray-900">{event.name}</p>
                                                 </div>
                                             </div>
                                         </div>

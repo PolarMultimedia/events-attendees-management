@@ -12,7 +12,7 @@ function RegisterAttendeeForm ({event_id}) {
     const [formErrors, setFormErrors] = useState({});
     const [isSubmiting, setIsSubmiting] = useState(false)
     const [isSuccess, setSuccess] = useState(false);
-    const url = "http://localhost:3000/registerAttendee";
+    const url = "http://192.168.1.19:3000/registerAttendee";
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -58,12 +58,6 @@ function RegisterAttendeeForm ({event_id}) {
             errors.name = 'El nombre debe tener al menos 3 caracteres';
         }
 
-        if(!values.lastname) {
-            errors.lastname = 'El apellido es obligatorio';
-        }   else if (values.lastname.length <= 3) {
-            errors.lastname = 'El apellido debe tener al menos 3 caracteres';
-        }
-
         if(!values.professional_code) {
             errors.professional_code = 'La cedula profesional es obligatoria'
         } else if (values.professional_code.length < 6 || values.professional_code.length > 8) {
@@ -92,21 +86,6 @@ function RegisterAttendeeForm ({event_id}) {
                                 />
                                 <label htmlFor="name" className="block text-sm font-medium text-red-600">
                                     {formErrors.name}
-                                </label>
-                            </div>
-                            <div className="col-span-6 sm:col-span-3">
-                                <label htmlFor="lastname" className="block text-sm font-medium text-gray-700">
-                                    Apellidos
-                                </label>
-                                <input
-                                    type="text"
-                                    name="lastname"
-                                    id="lastname"
-                                    onChange={handleChange}
-                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-900 focus:ring-gray-900 sm:text-sm"
-                                />
-                                <label htmlFor="lastname" className="block text-sm font-medium text-red-600">
-                                    {formErrors.lastname}
                                 </label>
                             </div>
                             <div className="col-span-6 sm:col-span-3">

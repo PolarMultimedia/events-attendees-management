@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
-function AttendeesListComponent ({list, eventId}) {
+function AttendeesListComponent ({list}) {
 
-    const url = "http://localhost:3000/registerAttendance";
+    const url = "http://192.168.1.19:3000/registerAttendance";
 
     const registerAttendance = async(attendant_id) => {
         
@@ -42,7 +42,7 @@ function AttendeesListComponent ({list, eventId}) {
                                     <div className="flex min-w-0 flex-1 items-center">
                                         <div className="min-w-0 flex-1 px-4 md:grid md:gap-4">
                                             <div>
-                                                <p className="truncate text-sm text-start font-medium text-gray-900">{attendee.name} {attendee.lastname}</p>
+                                                <p className="truncate text-sm text-start font-medium text-gray-900">{attendee.name}</p>
                                                 <p className="mt-2 flex items-center text-sm text-gray-500">Cedula Profesional: {attendee.professional_code}</p>
                                                 { attendee.attendance?
                                                     <p className="mt-2 flex items-center text-sm text-green-500"> Entrada registrada</p> 

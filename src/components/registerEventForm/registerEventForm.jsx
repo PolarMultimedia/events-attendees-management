@@ -396,11 +396,11 @@ function classNames(...classes) {
 
 function RegisterEventForm ({tourId, tourName}) {
     const initialValues = {
-        city: '',
+        name: '',
     }
 
     const uploadValues = {
-        city: '',
+        name: '',
         date: '',
         tour_id: tourId
     }
@@ -410,12 +410,7 @@ function RegisterEventForm ({tourId, tourName}) {
     const [formErrors, setFormErrors] = useState({});
     const [isSubmiting, setIsSubmiting] = useState(false);
     const [isSuccess, setSuccess] = useState(false);
-    const [selectedDay, setSelectedDay] = useState(days[0]);
-    const [selectedMonth, setSelectedMonth] = useState(months[0]);
-    const [selectedYear, setSelectedYear] = useState(years[0]);
-    const [selectedHour, setSelectedHour] = useState(hours[0]);
-    const [selectedMinute, setSelectedMinute] = useState(minutes[0]);
-    const url = "http://localhost:3000/addEvent";
+    const url = "http://192.168.1.19:3000/addEvent";
 
     
 
@@ -427,10 +422,8 @@ function RegisterEventForm ({tourId, tourName}) {
     const handleSubmit = (e) => {
         e.preventDefault();
         setFormErrors(validate(formValues));
-        const DateTime = selectedYear.value+"-"+selectedMonth.value+"-"+selectedDay.value+" "+selectedHour.value+":"+selectedMinute.value+":00";
         setUpload({
-            city: formValues.city,
-            date: DateTime,
+            name: formValues.name,
             tour_id: tourId
         })
         setIsSubmiting(true);
@@ -442,8 +435,6 @@ function RegisterEventForm ({tourId, tourName}) {
         setIsSubmiting(false);
         setSuccess(false);
         setUpload(uploadValues);
-        setSelectedDay(days[0]);
-        setSelectedMonth(months[0]);
     }
 
     useEffect(() => {
@@ -471,10 +462,10 @@ function RegisterEventForm ({tourId, tourName}) {
 
     const validate = (values) => {
         const errors = {};
-        if(!values.city) {
-            errors.city = 'El nombre de la ciudad es obligatorio';
-        } else if (values.city.length <= 3){
-            errors.city = 'El nombre del evento debe de ser de al menos 3 caracteres'
+        if(!values.name) {
+            errors.name = 'El nombre de la ciudad es obligatorio';
+        } else if (values.name.length <= 3){
+            errors.name = 'El nombre del evento debe de ser de al menos 3 caracteres'
         }
         return errors;
     }
@@ -487,319 +478,20 @@ function RegisterEventForm ({tourId, tourName}) {
                     <div className="bg-white px-4 py-5 sm:p-6">
                         <div className="grid grid-cols-6 gap-6">
                             <div className="col-span-6 sm:col-span-3">
-                                <label htmlFor="city" className="block text-sm font-medium text-gray-700">
+                                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                                     Nombre del Evento
                                 </label>
                                 <input
                                     type="text"
-                                    name="city"
-                                    id="city"
+                                    name="name"
+                                    id="name"
                                     onChange={handleChange}
                                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-900 focus:ring-gray-900 sm:text-sm"
                                 />
-                                <label htmlFor="city" className="block text-sm font-medium text-red-600">
-                                    {formErrors.city}
+                                <label htmlFor="name" className="block text-sm font-medium text-red-600">
+                                    {formErrors.name}
                                 </label>
                             </div>                  
-                        </div>
-                        <div className="grid grid-cols-3 gap-3">
-                            <div className="col-span-6 sm:col-span-3">
-                                <Listbox value={selectedDay} onChange={setSelectedDay}>
-                                    {({ open }) => (
-                                        <>
-                                        <Listbox.Label className="block text-sm font-medium leading-6 text-gray-900">Dia</Listbox.Label>
-                                        <div className="relative mt-2">
-                                            <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                            <span className="block truncate">{selectedDay.value}</span>
-                                            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                                                <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                                            </span>
-                                            </Listbox.Button>
-
-                                            <Transition
-                                            show={open}
-                                            as={Fragment}
-                                            leave="transition ease-in duration-100"
-                                            leaveFrom="opacity-100"
-                                            leaveTo="opacity-0"
-                                            >
-                                            <Listbox.Options className="mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                                {days.map((day) => (
-                                                <Listbox.Option
-                                                    key={day.id}
-                                                    className={({ active }) =>
-                                                    classNames(
-                                                        active ? 'bg-indigo-600 text-white' : 'text-gray-900',
-                                                        'relative cursor-default select-none py-2 pl-8 pr-4'
-                                                    )
-                                                    }
-                                                    value={day}
-                                                >
-                                                    {({ selected, active }) => (
-                                                    <>
-                                                        <span className={classNames(selected ? 'font-semibold' : 'font-normal', 'block truncate')}>
-                                                        {day.value}
-                                                        </span>
-
-                                                        {selected ? (
-                                                        <span
-                                                            className={classNames(
-                                                            active ? 'text-white' : 'text-indigo-600',
-                                                            'absolute inset-y-0 left-0 flex items-center pl-1.5'
-                                                            )}
-                                                        >
-                                                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                                                        </span>
-                                                        ) : null}
-                                                    </>
-                                                    )}
-                                                </Listbox.Option>
-                                                ))}
-                                            </Listbox.Options>
-                                            </Transition>
-                                        </div>
-                                        </>
-                                    )}
-                                </Listbox>
-                            </div>
-                            <div className="col-span-6 sm:col-span-3">
-                                <Listbox value={selectedMonth} onChange={setSelectedMonth}>
-                                    {({ open }) => (
-                                        <>
-                                        <Listbox.Label className="block text-sm font-medium leading-6 text-gray-900">Mes</Listbox.Label>
-                                        <div className="relative mt-2">
-                                            <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                            <span className="block truncate">{selectedMonth.text}</span>
-                                            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                                                <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                                            </span>
-                                            </Listbox.Button>
-
-                                            <Transition
-                                            show={open}
-                                            as={Fragment}
-                                            leave="transition ease-in duration-100"
-                                            leaveFrom="opacity-100"
-                                            leaveTo="opacity-0"
-                                            >
-                                            <Listbox.Options className="mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                                {months.map((month) => (
-                                                <Listbox.Option
-                                                    key={month.id}
-                                                    className={({ active }) =>
-                                                    classNames(
-                                                        active ? 'bg-indigo-600 text-white' : 'text-gray-900',
-                                                        'relative cursor-default select-none py-2 pl-8 pr-4'
-                                                    )
-                                                    }
-                                                    value={month}
-                                                >
-                                                    {({ selected, active }) => (
-                                                    <>
-                                                        <span className={classNames(selected ? 'font-semibold' : 'font-normal', 'block truncate')}>
-                                                        {month.text}
-                                                        </span>
-
-                                                        {selected ? (
-                                                        <span
-                                                            className={classNames(
-                                                            active ? 'text-white' : 'text-indigo-600',
-                                                            'absolute inset-y-0 left-0 flex items-center pl-1.5'
-                                                            )}
-                                                        >
-                                                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                                                        </span>
-                                                        ) : null}
-                                                    </>
-                                                    )}
-                                                </Listbox.Option>
-                                                ))}
-                                            </Listbox.Options>
-                                            </Transition>
-                                        </div>
-                                        </>
-                                    )}
-                                </Listbox>
-                            </div>
-                            <div className="col-span-6 sm:col-span-3">
-                                <Listbox value={selectedYear} onChange={setSelectedYear}>
-                                    {({ open }) => (
-                                        <>
-                                        <Listbox.Label className="block text-sm font-medium leading-6 text-gray-900">Año</Listbox.Label>
-                                        <div className="relative mt-2">
-                                            <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                            <span className="block truncate">{selectedYear.value}</span>
-                                            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                                                <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                                            </span>
-                                            </Listbox.Button>
-
-                                            <Transition
-                                            show={open}
-                                            as={Fragment}
-                                            leave="transition ease-in duration-100"
-                                            leaveFrom="opacity-100"
-                                            leaveTo="opacity-0"
-                                            >
-                                            <Listbox.Options className="mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                                {years.map((year) => (
-                                                <Listbox.Option
-                                                    key={year.id}
-                                                    className={({ active }) =>
-                                                    classNames(
-                                                        active ? 'bg-indigo-600 text-white' : 'text-gray-900',
-                                                        'relative cursor-default select-none py-2 pl-8 pr-4'
-                                                    )
-                                                    }
-                                                    value={year}
-                                                >
-                                                    {({ selected, active }) => (
-                                                    <>
-                                                        <span className={classNames(selected ? 'font-semibold' : 'font-normal', 'block truncate')}>
-                                                        {year.value}
-                                                        </span>
-
-                                                        {selected ? (
-                                                        <span
-                                                            className={classNames(
-                                                            active ? 'text-white' : 'text-indigo-600',
-                                                            'absolute inset-y-0 left-0 flex items-center pl-1.5'
-                                                            )}
-                                                        >
-                                                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                                                        </span>
-                                                        ) : null}
-                                                    </>
-                                                    )}
-                                                </Listbox.Option>
-                                                ))}
-                                            </Listbox.Options>
-                                            </Transition>
-                                        </div>
-                                        </>
-                                    )}
-                                </Listbox>
-                            </div>
-                        </div>
-                        <div className="grid grid-cols-3 gap-3">
-                            <div className="col-span-6 sm:col-span-3">
-                                <Listbox value={selectedHour} onChange={setSelectedHour}>
-                                    {({ open }) => (
-                                        <>
-                                        <Listbox.Label className="block text-sm font-medium leading-6 text-gray-900">Hora</Listbox.Label>
-                                        <div className="relative mt-2">
-                                            <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                            <span className="block truncate">{selectedHour.value}</span>
-                                            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                                                <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                                            </span>
-                                            </Listbox.Button>
-
-                                            <Transition
-                                            show={open}
-                                            as={Fragment}
-                                            leave="transition ease-in duration-100"
-                                            leaveFrom="opacity-100"
-                                            leaveTo="opacity-0"
-                                            >
-                                            <Listbox.Options className="mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                                {hours.map((hour) => (
-                                                <Listbox.Option
-                                                    key={hour.id}
-                                                    className={({ active }) =>
-                                                    classNames(
-                                                        active ? 'bg-indigo-600 text-white' : 'text-gray-900',
-                                                        'relative cursor-default select-none py-2 pl-8 pr-4'
-                                                    )
-                                                    }
-                                                    value={hour}
-                                                >
-                                                    {({ selected, active }) => (
-                                                    <>
-                                                        <span className={classNames(selected ? 'font-semibold' : 'font-normal', 'block truncate')}>
-                                                        {hour.value}
-                                                        </span>
-
-                                                        {selected ? (
-                                                        <span
-                                                            className={classNames(
-                                                            active ? 'text-white' : 'text-indigo-600',
-                                                            'absolute inset-y-0 left-0 flex items-center pl-1.5'
-                                                            )}
-                                                        >
-                                                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                                                        </span>
-                                                        ) : null}
-                                                    </>
-                                                    )}
-                                                </Listbox.Option>
-                                                ))}
-                                            </Listbox.Options>
-                                            </Transition>
-                                        </div>
-                                        </>
-                                    )}
-                                </Listbox>
-                            </div>
-                            <div className="col-span-6 sm:col-span-3">
-                                <Listbox value={selectedMinute} onChange={setSelectedMinute}>
-                                    {({ open }) => (
-                                        <>
-                                        <Listbox.Label className="block text-sm font-medium leading-6 text-gray-900">Minuto</Listbox.Label>
-                                        <div className="relative mt-2">
-                                            <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                            <span className="block truncate">{selectedMinute.value}</span>
-                                            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                                                <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                                            </span>
-                                            </Listbox.Button>
-
-                                            <Transition
-                                            show={open}
-                                            as={Fragment}
-                                            leave="transition ease-in duration-100"
-                                            leaveFrom="opacity-100"
-                                            leaveTo="opacity-0"
-                                            >
-                                            <Listbox.Options className="mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                                {minutes.map((minute) => (
-                                                <Listbox.Option
-                                                    key={minute.id}
-                                                    className={({ active }) =>
-                                                    classNames(
-                                                        active ? 'bg-indigo-600 text-white' : 'text-gray-900',
-                                                        'relative cursor-default select-none py-2 pl-8 pr-4'
-                                                    )
-                                                    }
-                                                    value={minute}
-                                                >
-                                                    {({ selected, active }) => (
-                                                    <>
-                                                        <span className={classNames(selected ? 'font-semibold' : 'font-normal', 'block truncate')}>
-                                                        {minute.value}
-                                                        </span>
-
-                                                        {selected ? (
-                                                        <span
-                                                            className={classNames(
-                                                            active ? 'text-white' : 'text-indigo-600',
-                                                            'absolute inset-y-0 left-0 flex items-center pl-1.5'
-                                                            )}
-                                                        >
-                                                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                                                        </span>
-                                                        ) : null}
-                                                    </>
-                                                    )}
-                                                </Listbox.Option>
-                                                ))}
-                                            </Listbox.Options>
-                                            </Transition>
-                                        </div>
-                                        </>
-                                    )}
-                                </Listbox>
-                            </div>
                         </div>
                     </div>
                 </form>

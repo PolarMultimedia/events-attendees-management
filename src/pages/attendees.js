@@ -11,7 +11,6 @@ import {
 
 const headers = [
     { label: "Nombre", key: "name" },
-    { label: "Apellido", key: "lastname" },
     { label: "Cedula profesional", key: "professional_code" },
     { label: "Asistencia", key: "attendance" },
     { label: "Codigo de acceso", key: "code" },
@@ -26,8 +25,8 @@ function Attendees() {
     const [scanning, setScanning] = useState(false);
     const [tourId, setTourId] = useState('');
     const [searchField, setSearchField] = useState('');
-    const url = "http://localhost:3000/getAttendees/"+event_id;
-    const urlEventCity = "http://localhost:3000/getEvent/"+event_id;
+    const url = "http://192.168.1.19:3000/getAttendees/"+event_id;
+    const urlEventCity = "http://192.168.1.19:3000/getEvent/"+event_id;
 
     const onSearchChange = (e) => {
         setSearchField(e.target.value);
@@ -40,7 +39,7 @@ function Attendees() {
     }
 
     const filteredList = list.filter(attendee => {
-        return attendee.name.toLowerCase().includes(searchField) || attendee.lastname.toLowerCase().includes(searchField);
+        return attendee.name.toLowerCase().includes(searchField);
     });
 
     useEffect(() => {
@@ -71,7 +70,7 @@ function Attendees() {
             .then(data => data)
             .then(res => {
                 setTourId(res.data[0].tour_id);
-                setEventCity(res.data[0].city);
+                setEventCity(res.data[0].name);
             })
             .catch((error) => console.error(error))
         )
