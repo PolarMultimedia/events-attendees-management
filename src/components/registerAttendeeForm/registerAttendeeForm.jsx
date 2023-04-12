@@ -12,7 +12,7 @@ function RegisterAttendeeForm ({event_id}) {
     const [formErrors, setFormErrors] = useState({});
     const [isSubmiting, setIsSubmiting] = useState(false)
     const [isSuccess, setSuccess] = useState(false);
-    const url = "http://192.168.1.19:3000/registerAttendee";
+    const url = "https://events-admin-api.herokuapp.com//registerAttendee";
 
     const handleChange = (e) => {
         const { name, value } = e.target;

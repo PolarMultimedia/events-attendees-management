@@ -6,7 +6,7 @@ import { RegisterEventForm } from '../components';
 function RegisterEventPage () {
     const { tour_id } = useParams();
     const [tour, setTour] = useState([]);
-    const url = "http://192.168.1.19:3000/getTour/"+tour_id;
+    const url = "https://events-admin-api.herokuapp.com//getTour/"+tour_id;
 
 
 

@@ -7,7 +7,7 @@ function RegisterAttendeePage () {
     const { event_id } = useParams();
     const [eventCity, setEventCity] = useState('');
 
-    const urlEventCity = "http://192.168.1.19:3000/getEvent/"+event_id;
+    const urlEventCity = "https://events-admin-api.herokuapp.com//getEvent/"+event_id;
     
 
     useEffect(() => {
