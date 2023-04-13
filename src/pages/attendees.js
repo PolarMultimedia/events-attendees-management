@@ -14,6 +14,7 @@ const headers = [
     { label: "Cedula profesional", key: "professional_code" },
     { label: "Asistencia", key: "attendance" },
     { label: "Codigo de acceso", key: "code" },
+    { label: "Fecha y hora de entrada", key:"date"}
 ]
 
 function Attendees() {
@@ -27,13 +28,25 @@ function Attendees() {
     const [searchField, setSearchField] = useState('');
     const url = "https://events-admin-api.herokuapp.com/getAttendees/"+event_id;
     const urlEventCity = "https://events-admin-api.herokuapp.com/getEvent/"+event_id;
-
+    const reportList = [];
     const onSearchChange = (e) => {
         setSearchField(e.target.value);
     }
 
+    list.forEach(attendee => {
+        reportList.push({
+            name: attendee.name,
+            professional_code: attendee.professional_code,
+            attendance: attendee.attendance? "Asistencia" : "Sin asistencia",
+            code: attendee.code,
+            date: new Date(attendee.updated_at).toLocaleString('es-MX')
+        })
+    })
+
+    console.log(reportList)
+
     const csvReport = {
-        data: list,
+        data: reportList,
         headers: headers,
         filename: 'ReporteAsistencia'+eventCity+'.csv'
     }
