@@ -39,7 +39,7 @@ function Attendees() {
             professional_code: attendee.professional_code,
             attendance: attendee.attendance? "Asistencia" : "Sin asistencia",
             code: attendee.code,
-            date: new Date(attendee.updated_at).toLocaleString('es-MX')
+            date: attendee.updated_at? new Date(attendee.updated_at).toLocaleString('es-MX') : 'Sin registro de asistencia'
         })
     })
 
