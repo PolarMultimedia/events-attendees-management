@@ -4,7 +4,7 @@ import Papa from 'papaparse';
 
 function AttendeesImporter ({event_id, setImporting}) {
 
-    const url = "https://events-admin-api.herokuapp.com//registerAttendees";
+    const url = "https://events-admin-api.herokuapp.com/registerAttendees";
 
     const [importedList, setImportedList] = useState([]);
 

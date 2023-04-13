@@ -25,8 +25,8 @@ function Attendees() {
     const [scanning, setScanning] = useState(false);
     const [tourId, setTourId] = useState('');
     const [searchField, setSearchField] = useState('');
-    const url = "https://events-admin-api.herokuapp.com//getAttendees/"+event_id;
-    const urlEventCity = "https://events-admin-api.herokuapp.com//getEvent/"+event_id;
+    const url = "https://events-admin-api.herokuapp.com/getAttendees/"+event_id;
+    const urlEventCity = "https://events-admin-api.herokuapp.com/getEvent/"+event_id;
 
     const onSearchChange = (e) => {
         setSearchField(e.target.value);

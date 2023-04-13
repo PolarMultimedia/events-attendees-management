@@ -9,8 +9,8 @@ function Events() {
     const { tour_id } = useParams();
     const [events, setEvents] = useState([]);
     const [tourName, setTourName] = useState('');
-    const url = "https://events-admin-api.herokuapp.com//getEvents/"+tour_id;
-    const urlTourName = "https://events-admin-api.herokuapp.com//getTour/"+tour_id;
+    const url = "https://events-admin-api.herokuapp.com/getEvents/"+tour_id;
+    const urlTourName = "https://events-admin-api.herokuapp.com/getTour/"+tour_id;
 
     useEffect(() => {
         const config = {

@@ -10,7 +10,7 @@ function RegisterTourForm () {
     const [formErrors, setFormErrors] = useState({});
     const [isSubmiting, setIsSubmiting] = useState(false)
     const [isSuccess, setSuccess] = useState(false);
-    const url = "https://events-admin-api.herokuapp.com//addTour";
+    const url = "https://events-admin-api.herokuapp.com/addTour";
 
     const handleChange = (e) => {
         const { name, value } = e.target;
