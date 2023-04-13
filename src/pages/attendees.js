@@ -96,6 +96,51 @@ function Attendees() {
                 <h2 className="text-3xl font-bold tracking-tight text-morado_abalat sm:text-4xl">Lista de Invitados a "{eventCity}"</h2>
             </div>
             {
+                importing ? 
+                <AttendeesImporter event_id={event_id} setImporting={setImporting}/>
+                : <div className="mt-10 flex items-center justify-center py-2 space-x-2">
+                    <button 
+                        type="button"
+                        className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-green-500 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
+                        onClick={() => setImporting(true)}
+                    >
+                        Importar Invitados
+                    </button>
+
+                </div>
+            }
+            <div className="grid grid-cols-1 gap-even sm:grid-cols-2 md:grid-cols-3">
+                <div className="mt-10 flex items-center justify-center py-2 space-x-2">
+                    <Link
+                        to={"/agregar-invitado/"+event_id}
+                        className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-green-500 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
+                    >
+                        Agregar Nuevo Invitado
+                    </Link>
+                </div>
+                {
+                    list.length !== 0 ?
+                    <div className="mt-10 flex items-center justify-center py-2">
+                        <CSVLink
+                            {...csvReport}
+                            className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-amber-400 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
+                        >
+                            Descargar reporte
+                        </CSVLink>
+                    </div> 
+                    : null
+                }
+                
+                <div className="mt-10 flex items-center justify-center py-2">
+                    <Link
+                        to={"/eventos/"+tourId}
+                        className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-red-600 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
+                    >
+                        Regresar
+                    </Link>
+                </div>
+            </div>
+            {
                 list.length !== 0 ? 
                 <>
                     {
@@ -130,51 +175,7 @@ function Attendees() {
                 </>
                 : null
             }
-            
             <AttendeesListComponent list={filteredList}/>
-            {
-                importing ? 
-                <AttendeesImporter event_id={event_id} setImporting={setImporting}/>
-                : <div className="mt-10 flex items-center justify-center py-2 space-x-2">
-                    <button 
-                        type="button"
-                        className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-green-500 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
-                        onClick={() => setImporting(true)}
-                    >
-                        Importar Invitados
-                    </button>
-
-                </div>
-            }
-            <div className="mt-10 flex items-center justify-center py-2 space-x-2">
-                <Link
-                    to={"/agregar-invitado/"+event_id}
-                    className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-green-500 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
-                >
-                    Agregar Nuevo Invitado
-                </Link>
-            </div>
-            {
-                list.length !== 0 ?
-                <div className="mt-10 flex items-center justify-center py-2">
-                    <CSVLink
-                        {...csvReport}
-                        className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-amber-400 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
-                    >
-                        Descargar reporte
-                    </CSVLink>
-                </div> 
-                : null
-            }
-            
-            <div className="mt-10 flex items-center justify-center py-2">
-                <Link
-                    to={"/eventos/"+tourId}
-                    className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-red-600 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
-                >
-                    Regresar
-                </Link>
-            </div>
         </>
     );
 }
