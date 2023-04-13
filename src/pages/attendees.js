@@ -30,7 +30,7 @@ function Attendees() {
     const urlEventCity = "https://events-admin-api.herokuapp.com/getEvent/"+event_id;
     const reportList = [];
     const onSearchChange = (e) => {
-        setSearchField(e.target.value);
+        setSearchField(e.target.value.toLowerCase());
     }
 
     list.forEach(attendee => {
