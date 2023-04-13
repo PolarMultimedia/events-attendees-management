@@ -44,7 +44,25 @@ function AttendeesImporter ({event_id, setImporting}) {
     return (
 
         <>
-           { importedList.length !== 0 ? 
+            <div>    
+                <input
+                    type="file"
+                    name="file"
+                    accept=".csv"
+                    onChange={changeHandler}
+                    style={{ display: "block", margin: "10px auto" }}
+                />
+            </div>
+            <div className="mt-10 flex items-center justify-center py-2 space-x-2">
+                <button 
+                    type="button"
+                    className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-red-400 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
+                    onClick={() => setImporting(false)}
+                >
+                    Cancelar Importacion
+                </button>
+            </div>
+            { importedList.length !== 0 ? 
            <>
             <div className="text-center px-4 pt-16 pb-10 sm:px-2 lg:px-8 lg:pt-24 lg:pb-10">
                     <h2 className="text-3xl font-bold tracking-tight text-morado_abalat sm:text-4xl">Lista de Invitados a importar</h2>
@@ -83,25 +101,6 @@ function AttendeesImporter ({event_id, setImporting}) {
                     <h3 className="text-xl font-bold tracking-tight text-morado_abalat sm:text-2xl">No hay invitados registrados</h3>
                 </div>
            } 
-            <div>    
-                <input
-                    type="file"
-                    name="file"
-                    accept=".csv"
-                    onChange={changeHandler}
-                    style={{ display: "block", margin: "10px auto" }}
-                />
-            </div>
-            <div className="mt-10 flex items-center justify-center py-2 space-x-2">
-                <button 
-                    type="button"
-                    className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-red-400 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
-                    onClick={() => setImporting(false)}
-                >
-                    Cancelar Importacion
-                </button>
-            </div>
-            
         </>
     )
 }
