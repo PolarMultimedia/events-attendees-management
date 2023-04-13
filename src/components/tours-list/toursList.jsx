@@ -6,7 +6,7 @@ function ToursList ({tours}) {
     return (
         <>
             <div className="text-center px-4 pt-16 pb-10 sm:px-2 lg:px-8 lg:pt-24 lg:pb-10">
-                <h2 className="text-3xl font-bold tracking-tight text-morado_abalat sm:text-4xl uppercase">Lista de Tours Polar Multimedia</h2>
+                <h2 className="text-3xl font-bold tracking-tight text-morado_abalat sm:text-4xl uppercase">Lista de Giras</h2>
             </div>
             {
                 tours.length !== 0 ?
