@@ -80,6 +80,11 @@ function Scanner ({listAttendees}) {
                     delay={delay}
                     onError={handleError}
                     onResult={handleScan}
+                    constraints={
+                        {
+                            facingMode: 'environment'
+                        }
+                    }
                     />
                     : null
                 } 
