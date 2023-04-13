@@ -29,7 +29,7 @@ class Tours extends Component  {
                         to="/agregar-tour"
                         className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-gray-900 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
                     >
-                        Agregar Nuevo Tour
+                        Agregar Nueva Gira
                     </Link>
                 </div>
                 <div className="mt-10 flex items-center justify-center py-2">

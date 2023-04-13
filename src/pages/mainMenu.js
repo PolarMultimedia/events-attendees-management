@@ -14,13 +14,13 @@ function Home(){
                         to="/tours"
                         className="flex w-full items-center justify-center rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium text-gray-900 md:py-4 md:px-10 md:text-lg"
                     >
-                        Ver Lista de Tours
+                        Ver Giras
                     </Link>
                     <Link
                         to="/agregar-tour"
                         className="flex w-full items-center justify-center rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium text-gray-900 md:py-4 md:px-10 md:text-lg"
                     >
-                        Agregar Nuevo Tour
+                        Agregar Nueva Gira
                     </Link>
                 </div>
                 </div>
