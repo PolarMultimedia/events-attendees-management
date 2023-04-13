@@ -63,7 +63,7 @@ function RegisterTourForm () {
                         <div className="grid grid-cols-6 gap-6">
                             <div className="col-span-6 sm:col-span-3">
                                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                                    Nombre del Tour
+                                    Nombre del gira
                                 </label>
                                 <input
                                     type="text"
@@ -84,7 +84,7 @@ function RegisterTourForm () {
                         onClick={handleSubmit}
                         className="inline-flex justify-center rounded-md border border-transparent bg-gray-900 py-2 px-4 text-sm lg:text-2xl lg:font-semibold font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
                         >
-                        Registrar Tour
+                        Registrar Gira
                     </button>
                 </div>
                 {
