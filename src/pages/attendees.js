@@ -14,7 +14,8 @@ const headers = [
     { label: "Cedula profesional", key: "professional_code" },
     { label: "Asistencia", key: "attendance" },
     { label: "Codigo de acceso", key: "code" },
-    { label: "Fecha y hora de entrada", key:"date"}
+    { label: "Fecha y hora de entrada", key:"date"},
+    { label: "Estado de confirmación", key: "confirmation_status"}
 ]
 
 function Attendees() {
@@ -39,7 +40,8 @@ function Attendees() {
             professional_code: attendee.professional_code,
             attendance: attendee.attendance? "Asistencia" : "Sin asistencia",
             code: attendee.code,
-            date: attendee.updated_at? new Date(attendee.updated_at).toLocaleString('es-MX') : 'Sin registro de asistencia'
+            date: attendee.updated_at? new Date(attendee.updated_at).toLocaleString('es-MX') : 'Sin registro de asistencia',
+            confirmation_status: attendee.confirmation_status
         })
     })
 
