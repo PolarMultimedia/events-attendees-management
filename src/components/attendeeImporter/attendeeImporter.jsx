@@ -21,6 +21,10 @@ function AttendeesImporter ({event_id, setImporting}) {
         });
     };
 
+    const cancelImport = () => {
+        setImportedList([]);
+    }
+
     const sendAttendees = async() => {
         axios.request(url, {
             method: 'post',
@@ -77,7 +81,13 @@ function AttendeesImporter ({event_id, setImporting}) {
                                         <div className="min-w-0 flex-1 px-4 md:grid md:gap-4">
                                             <div>
                                                 <p className="truncate text-sm text-start font-medium text-gray-900">{attendee.name}</p>
-                                                <p className="mt-2 flex items-center text-sm text-gray-500">Cedula Profesional: {attendee.professional_code}</p>
+                                                {
+                                                    attendee.professional_code.length > 8 ? 
+                                                    <p className="mt-2 flex items-center text-sm text-red-500">Cedula Profesional: {attendee.professional_code}</p> 
+                                                    :  <p className="mt-2 flex items-center text-sm text-gray-500">Cedula Profesional: {attendee.professional_code}</p>
+                                                }  
+                                                <p className="mt-2 flex items-center text-sm text-gray-500">Código: {attendee.code}</p>
+                                                <p className="mt-2 flex items-center text-sm text-gray-500">Confirmación: {attendee.confirmation_status}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -93,6 +103,13 @@ function AttendeesImporter ({event_id, setImporting}) {
                             onClick={() => sendAttendees()}
                         >
                             Importar
+                        </button>
+                        <button 
+                            type="button"
+                            className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-green-500 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
+                            onClick={() => cancelImport()}
+                        >
+                            Cancelar Importación
                         </button>
                     </div>
                 </div>
