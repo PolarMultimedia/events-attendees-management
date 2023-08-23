@@ -25,13 +25,20 @@ function AttendeesListComponent ({list}) {
         .catch(err => console.error(err))
 
         return false;
-    } 
+    }
+    
+    const totalAttendeesRegistered = list.filter(attendee => {
+        return attendee.attendance
+    });
+
+    console.log(totalAttendeesRegistered)
     return (
         <>
            { list.length !== 0 ? 
            <>
-                <div className="text-left px-4 pt-16 pb-10 sm:px-2 lg:px-8 lg:pt-24 lg:pb-10">
+                <div className="text-center px-4 pt-16 pb-10 sm:px-2 lg:px-8 lg:pt-24 lg:pb-10 lg:grid lg:grid-flow-col">
                     <h2 className="text-lg tracking-tight text-morado_abalat sm:text-4xl">Total de invitados {list.length}</h2>
+                    <h2 className="text-lg tracking-tight text-morado_abalat sm:text-4xl">Total de asistentes {totalAttendeesRegistered.length}</h2>
                 </div>
                 <div className="px-4 py-3 text-right sm:px-6 ">
                     <div className="overflow-hidden bg-white shadow sm:rounded-md">
