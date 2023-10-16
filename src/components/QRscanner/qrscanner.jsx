@@ -39,7 +39,7 @@ function Scanner ({listAttendees}) {
 
     const registerAttendance = (attendee_id) => {
         console.log('scanned attendee',scannedAttendee.id);
-        axios.request(url,{
+        axios.request({
             method: 'post',
             url: url,
             headers: { 
@@ -53,9 +53,8 @@ function Scanner ({listAttendees}) {
         .then(response => response)
         .then(res => res.data[0])
         .then(resp => console.log(resp))
-        .then(window.location.reload(true))
         .catch(err => console.error(err))
-
+    
         return false;
     }
 
