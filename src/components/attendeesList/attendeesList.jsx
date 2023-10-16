@@ -31,7 +31,6 @@ function AttendeesListComponent ({list}) {
         return attendee.attendance
     });
 
-    console.log(totalAttendeesRegistered)
     return (
         <>
            { list.length !== 0 ? 
@@ -43,7 +42,7 @@ function AttendeesListComponent ({list}) {
                 <div className="px-4 py-3 text-right sm:px-6 ">
                     <div className="overflow-hidden bg-white shadow sm:rounded-md">
                         <ul className="divide-y divide-gray-200">
-                            {list.map((attendee) => (
+                            {list.sort((a,b) => b.attendance - a.attendance).map((attendee) => (
                             <li key={attendee.id}>
                                 <div className="flex items-center px-4 py-4 sm:px-6">
                                     <div className="flex min-w-0 flex-1 items-center">
