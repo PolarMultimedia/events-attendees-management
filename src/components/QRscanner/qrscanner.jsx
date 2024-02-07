@@ -18,7 +18,6 @@ function Scanner ({listAttendees}) {
             setScannedAttendee(attendee);
             if (attendee.attendance) {
                 setAlreadyScanned(true);
-                console.log('asistencia ya registrada');
             } else {
                 registerAttendance(attendee.id);
             }
@@ -38,7 +37,6 @@ function Scanner ({listAttendees}) {
     
 
     const registerAttendance = (attendee_id) => {
-        console.log('scanned attendee',scannedAttendee.id);
         axios.request({
             method: 'post',
             url: url,
@@ -85,7 +83,12 @@ function Scanner ({listAttendees}) {
                         }
                     }
                     />
-                    : null
+                    : <div className='justify-center mt-6'>
+                        <h2 className='text-center text-bold text-red-500'> Asistencia registrada </h2>  
+                        <h1 className='text-center'>QR Escaneado</h1>
+                        <h2 className='text-center'>Invitado:  {scannedAttendee.name}</h2>
+                        <h2 className='text-center'>Cedula profesional: {scannedAttendee.professional_code} </h2>
+                    </div>
                 } 
                {
                 unregistered?

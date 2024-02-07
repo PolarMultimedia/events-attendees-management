@@ -24,7 +24,6 @@ function Attendees() {
     const [list, setList] = useState([]);
     const [eventCity, setEventCity] = useState('');
     const [importing, setImporting] = useState(false);
-    const [scanning, setScanning] = useState(false);
     const [tourId, setTourId] = useState('');
     const [searchField, setSearchField] = useState('');
     const url = "https://events-admin-api.herokuapp.com/getAttendees/"+event_id;
@@ -145,32 +144,14 @@ function Attendees() {
             {
                 list.length !== 0 ? 
                 <>
-                    {
-                        scanning?
-                        <>  
-
-                            <ScannerQRComponent listAttendees={list}/>
-                            <div className="mt-10 flex items-center justify-center py-2 space-x-2">
-                                <button 
-                                    type="button" 
-                                    onClick={() => setScanning(false)}
-                                    className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-red-400 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
-                                >
-                                    Dejar de escanear
-                                </button>
-                            </div>
-                        </> 
-                        :
-                        <div className="mt-10 flex items-center justify-center py-2 space-x-2">
-                            <button 
-                                type="button" 
-                                onClick={() => setScanning(true)}
-                                className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-amber-400 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
-                            >
-                                Escanear QR
-                            </button>
-                        </div>
-                    }
+                    <div className="mt-10 flex items-center justify-center py-2">
+                        <Link
+                            to={"/escanear/"+event_id}
+                            className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-red-600 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
+                        >
+                            Escanear
+                        </Link>
+                    </div>
                     <div className="mt-10 flex items-center justify-center py-2 space-x-2">
                         <SearchBox searchChange={onSearchChange} />
                     </div>
