@@ -101,21 +101,9 @@ function Scanner ({listAttendees}) {
                 alreadyScanned ?
                     <div className='justify-center mt-6'>
                         <h2 className='text-center text-bold text-red-500'> Asistencia ya registrada </h2>  
-                        <h1 className='text-center'>QR Escaneado</h1>
-                        <h2 className='text-center'>Invitado:  {scannedAttendee.name}</h2>
-                        <h2 className='text-center'>Cedula profesional: {scannedAttendee.professional_code} </h2>
                     </div>
                     : null
                }
-            </div>
-            <div className="mt-10 flex items-center justify-center py-2 space-x-2">
-                <button 
-                    type="button" 
-                    onClick={() => resetScanner()}
-                    className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-amber-400 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
-                >
-                    Escanear otro QR
-                </button>
             </div>
         </>
     );
