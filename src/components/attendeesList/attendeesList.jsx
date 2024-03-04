@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function AttendeesListComponent ({list}) {
 
-    const url = "https://events-admin-api.herokuapp.com/registerAttendance";
+    const url = "http://localhost:3000/registerAttendance";
 
     const registerAttendance = async(attendant_id) => {
         

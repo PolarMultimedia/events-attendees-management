@@ -12,7 +12,7 @@ class Tours extends Component  {
     }
 
     componentDidMount(){
-        fetch('https://events-admin-api.herokuapp.com/getTourTotalEvents')
+        fetch('http://localhost:3000/getTourTotalEvents')
         .then(response => response.json())
         .then(tours => {
             this.setState({tours: tours});

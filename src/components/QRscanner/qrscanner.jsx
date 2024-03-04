@@ -8,7 +8,7 @@ function Scanner ({listAttendees}) {
     const [scanning, setScanning] = useState(true);
     const [unregistered, setUnregistered] = useState(false);
     const [alreadyScanned, setAlreadyScanned] = useState(false);
-    const url = 'https://events-admin-api.herokuapp.com/registerAttendance/';
+    const url = 'http://localhost:3000/registerAttendance/';
 
     const searchAttendee = (code) => {
         const attendee = listAttendees.find(attendee => attendee.code === code);

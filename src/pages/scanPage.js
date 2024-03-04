@@ -10,7 +10,7 @@ function Attendees() {
     const { event_id } = useParams();
     const [list, setList] = useState([]);
     const [scanning, setScanning] = useState(false);
-    const url = "https://events-admin-api.herokuapp.com/getAttendees/"+event_id;
+    const url = "http://localhost:3000/getAttendees/"+event_id;
 
     useEffect(() => {
         const config = {
