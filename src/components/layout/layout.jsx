@@ -12,7 +12,7 @@ const navigation = [
         href: '/'
     },
     {
-        name: 'Tours',
+        name: 'Ver Eventos',
         href: '/tours'
     }
 ]
@@ -21,7 +21,7 @@ class Layout extends Component {
     render() {
         const children = this.props.children;
         return (
-            <div className="bg-principal">
+            <div className="bg-white">
                 <div className="relative overflow-hidden">
                     <Popover as="header" className="relative">
                         <div className="bg-principal py-4 align-middle">
@@ -46,7 +46,7 @@ class Layout extends Component {
                                 <Link
                                     key={item.name}
                                     to={item.href}
-                                    className="text-base font-medium text-gray-900 hover:text-gray-300"
+                                    className="text-base font-medium text-contrast hover:text-highlight"
                                 >
                                     {item.name}
                                 </Link>
