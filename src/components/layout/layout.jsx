@@ -21,12 +21,12 @@ class Layout extends Component {
     render() {
         const children = this.props.children;
         return (
-            <div className="bg-white">
+            <div className="bg-principal">
                 <div className="relative overflow-hidden">
                     <Popover as="header" className="relative">
-                        <div className="bg-white pt-6 pb-0">
+                        <div className="bg-principal py-4 align-middle">
                         <nav
-                            className="relative mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6"
+                            className="relative mx-auto flex max-w-7xl  justify-between px-6 lg:px-4 lg:py-2"
                             aria-label="Global"
                         >
                             <div className="flex flex-1 items-center">
@@ -54,9 +54,7 @@ class Layout extends Component {
                             </div>
                             </div>
                         </nav>
-                        <hr className='bg-gray-900 w-full h-2 lg:h-4' />
                         </div>
-            
                         <Transition
                         as={Fragment}
                         enter="duration-150 ease-out"
@@ -96,7 +94,7 @@ class Layout extends Component {
                     <main>
                         {children}
                     </main>
-                    <footer className="bg-gray-900" aria-labelledby="footer-heading">
+                    <footer className="bg-contrast" aria-labelledby="footer-heading">
                         <h2 id="footer-heading" className="sr-only">
                         Footer
                         </h2>
