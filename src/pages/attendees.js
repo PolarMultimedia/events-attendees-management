@@ -6,7 +6,6 @@ import {
     AttendeesListComponent,
     SearchBox,
     AttendeesImporter,
-    ScannerQRComponent
 } from "../components";
 
 const headers = [
@@ -89,7 +88,7 @@ function Attendees() {
             .catch((error) => console.error(error))
         )
         .catch((error) => console.error(error))
-    }, []);
+    }, [url, urlEventCity]);
 
     return (
         <>
@@ -143,7 +142,10 @@ function Attendees() {
             </div>
             {
                 list.length !== 0 ? 
-                <>
+                <div className="grid grid-flow-col">
+                    <div className="flex items-center justify-center py-4">
+                        <SearchBox searchChange={onSearchChange} />
+                    </div>
                     <div className="mt-10 flex items-center justify-center py-2">
                         <Link
                             to={"/escanear/"+event_id}
@@ -152,10 +154,7 @@ function Attendees() {
                             Escanear
                         </Link>
                     </div>
-                    <div className="mt-10 flex items-center justify-center py-2 space-x-2">
-                        <SearchBox searchChange={onSearchChange} />
-                    </div>
-                </>
+                </div>
                 : null
             }
             <AttendeesListComponent list={filteredList}/>

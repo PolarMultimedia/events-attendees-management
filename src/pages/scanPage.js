@@ -9,7 +9,7 @@ function Attendees() {
 
     const { event_id } = useParams();
     const [list, setList] = useState([]);
-    const [scanning, setScanning] = useState(false);
+    const [scanning, setScanning] = useState(true);
     const url = "http://localhost:3000/getAttendees/"+event_id;
 
     useEffect(() => {
@@ -36,7 +36,7 @@ function Attendees() {
                 list.length !== 0 ? 
                 <>
                     {
-                        scanning?
+                        scanning ?
                         <>  
 
                             <ScannerQRComponent listAttendees={list}/>

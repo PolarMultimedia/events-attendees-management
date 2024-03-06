@@ -24,13 +24,6 @@ function Scanner ({listAttendees}) {
         }
     }
 
-    const resetScanner = () => {
-        setAlreadyScanned(false);
-        setScanning(true);
-        setUnregistered(false);
-        setScannedAttendee({});
-    }
-
     useEffect(() => {
        
     },[scannedAttendee, alreadyScanned, scanning, unregistered])

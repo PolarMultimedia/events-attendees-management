@@ -33,7 +33,7 @@ function AttendeesListComponent ({list}) {
         <>
            { list.length !== 0 ? 
            <>
-                <div className="text-center px-4 pt-16 pb-10 sm:px-2 lg:px-8 lg:pt-24 lg:pb-10 lg:grid lg:grid-flow-col">
+                <div className="text-center px-4 pt-16 pb-10 sm:px-2 lg:px-8 lg:pt-6 lg:pb-6 lg:grid lg:grid-flow-col">
                     <h2 className="text-4xl tracking-tight text-morado_abalat md:text-md">Total de invitados {list.length}</h2>
                     <h2 className="text-4xl tracking-tight text-morado_abalat md:text-md">Total de asistentes {totalAttendeesRegistered.length}</h2>
                 </div>
