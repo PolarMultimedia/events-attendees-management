@@ -17,7 +17,7 @@ function RegisterEventForm ({tourId, tourName}) {
     const [formErrors, setFormErrors] = useState({});
     const [isSubmiting, setIsSubmiting] = useState(false);
     const [isSuccess, setSuccess] = useState(false);
-    const url = "http://localhost:3000/addEvent";
+    const url = "https://events-admin-api.herokuapp.com/addEvent";
 
     
 

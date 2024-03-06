@@ -25,8 +25,8 @@ function Attendees() {
     const [importing, setImporting] = useState(false);
     const [tourId, setTourId] = useState('');
     const [searchField, setSearchField] = useState('');
-    const url = "http://localhost:3000/getAttendees/"+event_id;
-    const urlEventCity = "http://localhost:3000/getEvent/"+event_id;
+    const url = "https://events-admin-api.herokuapp.com/getAttendees/"+event_id;
+    const urlEventCity = "https://events-admin-api.herokuapp.com/getEvent/"+event_id;
     const reportList = [];
     const onSearchChange = (e) => {
         setSearchField(e.target.value.toLowerCase());
