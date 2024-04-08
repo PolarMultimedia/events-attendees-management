@@ -28,6 +28,7 @@ function Attendees() {
     const url = "https://events-admin-api.herokuapp.com/getAttendees/"+event_id;
     const urlEventCity = "https://events-admin-api.herokuapp.com/getEvent/"+event_id;
     const reportList = [];
+
     const onSearchChange = (e) => {
         setSearchField(e.target.value.toLowerCase());
     }
@@ -42,8 +43,6 @@ function Attendees() {
             confirmation_status: attendee.confirmation_status
         })
     })
-
-    console.log(reportList)
 
     const csvReport = {
         data: reportList,
@@ -140,24 +139,7 @@ function Attendees() {
                     </Link>
                 </div>
             </div>
-            {
-                list.length !== 0 ? 
-                <div className="grid grid-flow-col">
-                    <div className="flex items-center justify-center py-4">
-                        <SearchBox searchChange={onSearchChange} />
-                    </div>
-                    <div className="mt-10 flex items-center justify-center py-2">
-                        <Link
-                            to={"/escanear/"+event_id}
-                            className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-red-600 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
-                        >
-                            Escanear
-                        </Link>
-                    </div>
-                </div>
-                : null
-            }
-            <AttendeesListComponent list={filteredList}/>
+            <AttendeesListComponent list={filteredList} searchChange={onSearchChange} event_id={event_id}/>
         </>
     );
 }
