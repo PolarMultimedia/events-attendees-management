@@ -12,7 +12,7 @@ const navigation = [
         href: '/'
     },
     {
-        name: 'Ver Eventos',
+        name: 'Eventos',
         href: '/tours'
     }
 ]
@@ -25,12 +25,16 @@ class Layout extends Component {
                 <div className="relative overflow-hidden">
                     <Popover as="header" className="relative">
                         <div className="bg-principal py-4 align-middle">
+                        
                         <nav
                             className="relative mx-auto flex max-w-7xl  justify-between px-6 lg:px-4 lg:py-2"
                             aria-label="Global"
                         >
-                            <div className="flex flex-1 items-center">
-                            <div className="flex w-full items-center justify-between md:w-auto">
+                            <h2 className="text-3xl font-bold tracking-tight text-contrast sm:text-4xl">
+                                Eventos Polar Multimedia
+                            </h2>
+                            <div className="flex flex-1 items-end justify-end">
+                            <div className="flex w-full items-end justify-between md:w-auto">
                                 <Link to="/">
                                     <span className="sr-only">Administracion de Eventos</span>
                                 </Link>
@@ -101,7 +105,7 @@ class Layout extends Component {
                         <div className="mx-auto max-w-md px-4 sm:max-w-7xl sm:px-6 lg:px-8 lg:pt-10">
                             <div className="mt-12 border-t border-gray-200 py-8">
                                 <p className="text-base text-gray-400 xl:text-center">
-                                &copy; 2023 Polar Multimedia S de RL Todos los derechos reservados.
+                                &copy; 2024 Polar Multimedia S de RL Todos los derechos reservados.
                                 </p>
                             </div>
                         </div>
