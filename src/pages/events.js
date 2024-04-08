@@ -49,23 +49,27 @@ function Events() {
 
     return (
         <>
-            <EventsList events={events} tourName={tourName} />
-            <div className="mt-10 flex items-center justify-center py-2">
-                <Link
-                    to={"/agregar-evento/"+tour_id}
-                    className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-gray-900 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
-                >
-                    Agregar Nuevo Evento
-                </Link>
+            <div className="text-center px-4 pt-10 pb-10 sm:px-2 lg:px-8 lg:pt-10 lg:pb-6">
+                <h2 className="text-3xl font-bold tracking-tight text-morado_abalat sm:text-4xl uppercase">Fechas del evento "{tourName}"</h2>
             </div>
-            <div className="mt-10 flex items-center justify-center py-2">
+            <div className="mt-4 ml-10 flex flex-col lg:flex-row lg:justify-start cols-1 items-center justify-end gap-6">
                 <Link
-                    to={"/tours"}
-                    className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-red-600 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
+                    to="/"
+                    className="flex items-center justify-center rounded-md border border-contrast bg-white px-2 py-3 text-base font-medium text-gray-900 md:py-4 md:px-2 md:text-md"
                 >
                     Regresar
                 </Link>
+                <Link
+                    to={"/agregar-evento/"+tour_id}
+                    className="flex items-center justify-center rounded-md border border-contrast bg-white px-2 py-3 text-base font-medium text-gray-900 md:py-4 md:px-2 md:text-md"
+                >
+                    Nueva fecha
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                </Link>
             </div>
+            <EventsList events={events} tourName={tourName} />
         </>
     );
 }

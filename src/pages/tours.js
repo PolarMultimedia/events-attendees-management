@@ -23,23 +23,24 @@ class Tours extends Component  {
     render(){
         return (
             <>
-                <ToursList tours={this.state.tours} />
-                <div className="mt-10 flex items-center justify-center py-2">
+                <div className="mt-4 ml-10 flex flex-col lg:flex-row lg:justify-start cols-1 items-center justify-end gap-6">
                     <Link
-                        to="/agregar-tour"
-                        className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-gray-900 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
-                    >
-                        Agregar Nueva Gira
-                    </Link>
-                </div>
-                <div className="mt-10 flex items-center justify-center py-2">
-                    <Link
-                        to={"/"}
-                        className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-red-600 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
+                        to="/"
+                        className="flex items-center justify-center rounded-md border border-contrast bg-white px-2 py-3 text-base font-medium text-gray-900 md:py-4 md:px-2 md:text-md"
                     >
                         Regresar
                     </Link>
+                    <Link
+                        to="/agregar-tour"
+                        className="flex items-center justify-center rounded-md border border-contrast bg-white px-2 py-3 text-base font-medium text-gray-900 md:py-4 md:px-2 md:text-md"
+                    >
+                        Nuevo Evento
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                    </Link>
                 </div>
+                <ToursList tours={this.state.tours} />
             </>
         );
     };
