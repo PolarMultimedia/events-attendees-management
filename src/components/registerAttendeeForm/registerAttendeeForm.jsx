@@ -59,9 +59,9 @@ function RegisterAttendeeForm ({event_id}) {
         }
 
         if(!values.professional_code) {
-            errors.professional_code = 'La cedula profesional es obligatoria'
+            errors.professional_code = 'El identificador es obligatoria'
         } else if (values.professional_code.length < 6 || values.professional_code.length > 8) {
-            errors.professional_code = 'La cedula profesional debe tener entre 6 y 8 digitos'
+            errors.professional_code = 'El identificador debe tener entre 6 y 8 digitos'
         }
     
         return errors;
@@ -69,7 +69,7 @@ function RegisterAttendeeForm ({event_id}) {
 
     return(
         <>
-            <div className="overflow-hidden shadow sm:rounded-md">
+            <div className="overflow-hidden">
                 <form>
                     <div className="bg-white px-4 py-5 sm:p-6">
                         <div className="grid grid-cols-6 gap-6">
@@ -81,6 +81,7 @@ function RegisterAttendeeForm ({event_id}) {
                                     type="text"
                                     name="name"
                                     id="name"
+                                    placeholder="ex: Juan Pérez"
                                     onChange={handleChange}
                                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-900 focus:ring-gray-900 sm:text-sm"
                                 />
@@ -90,13 +91,14 @@ function RegisterAttendeeForm ({event_id}) {
                             </div>
                             <div className="col-span-6 sm:col-span-3">
                                 <label htmlFor="professional_code" className="block text-sm font-medium text-gray-700">
-                                    Cedula Profesional
+                                    Identificador
                                 </label>
                                 <input
                                     type="number"
                                     name="professional_code"
                                     id="professional_code"
                                     onChange={handleChange}
+                                    placeholder="ex: 123456789"
                                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-900 focus:ring-gray-900 sm:text-sm"
                                 />
                                 <label htmlFor="professional_code" className="block text-sm font-medium text-red-600">
@@ -113,6 +115,13 @@ function RegisterAttendeeForm ({event_id}) {
                         >
                         Registrar Invitado
                     </button>
+                </div>
+                <div className="sm:flex sm:items-center p-6">
+                    <div className="sm:flex-auto">
+                    <p className="mt-2 text-sm text-gray-700">
+                        El identificador depende del tipo del evento.
+                    </p>
+                    </div>
                 </div>
                 {
                     isSuccess? (
