@@ -57,18 +57,27 @@ function RegisterTourForm () {
 
     return(
         <>
-            <div className="overflow-hidden shadow sm:rounded-md">
+            <div className="overflow-hidden">
                 <form>
-                    <div className="bg-white px-4 py-5 sm:p-6">
-                        <div className="grid grid-cols-6 gap-6">
-                            <div className="col-span-6 sm:col-span-3">
+                    <div className="bg-white px-4 py-5 sm:p-20">
+                            {
+                                isSuccess? (
+                                    <div className="bg-teal-100 border-b-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+                                        <div className="text-center">
+                                                <p className="font-bold">Evento agregado correctamente</p>
+                                        </div>
+                                    </div>
+                                ) : null
+                            }
+                            <div className="max-w-36 my-4">
                                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                                    Nombre del gira
+                                    Nombre del evento
                                 </label>
                                 <input
                                     type="text"
                                     name="name"
                                     id="name"
+                                    placeholder="ex: Polarween 2024"
                                     onChange={handleChange}
                                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-900 focus:ring-gray-900 sm:text-sm"
                                 />
@@ -76,28 +85,16 @@ function RegisterTourForm () {
                                     {formErrors.name}
                                 </label>
                             </div>
-                        </div>
                     </div>
                 </form>
-                <div className="bg-gray-50 px-4 py-3 text-center sm:px-6">
+                <div className="px-4 text-center sm:px-6">
                     <button
                         onClick={handleSubmit}
-                        className="inline-flex justify-center rounded-md border border-transparent bg-gray-900 py-2 px-4 text-sm lg:text-2xl lg:font-semibold font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+                        className="inline-flex uppercase justify-center rounded-md border border-transparent bg-gray-900 py-2 px-4 text-sm lg:text-2xl lg:font-semibold font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
                         >
-                        Registrar Gira
+                        Agregar evento
                     </button>
                 </div>
-                {
-                    isSuccess? (
-                        <div className="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
-                            <div className="flex">
-                                <div>
-                                    <p className="font-bold">Tour registrado exitosamente</p>
-                                </div>
-                            </div>
-                        </div>
-                    ) : null
-                }
             </div>
         </>
     );
