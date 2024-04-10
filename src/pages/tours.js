@@ -28,7 +28,7 @@ class Tours extends Component  {
                         to="/"
                         className="flex items-center justify-center rounded-md border border-contrast bg-white px-2 py-3 text-base font-medium text-gray-900 md:py-4 md:px-2 md:text-md"
                     >
-                        Regresar
+                        Regresar al Inicio
                     </Link>
                     <Link
                         to="/agregar-tour"

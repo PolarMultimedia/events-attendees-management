@@ -26,7 +26,7 @@ function RegisterAttendeePage () {
                 setEventCity(res.data[0].city);
             })
             .catch(err => console.error(err));
-    },[event_id])
+    },[event_id, urlEventCity])
     return (
         <>
             <div className="text-center px-4 pt-16 pb-10 sm:px-2 lg:px-8 lg:pt-24 lg:pb-10">

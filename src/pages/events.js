@@ -54,10 +54,10 @@ function Events() {
             </div>
             <div className="mt-4 ml-10 flex flex-col lg:flex-row lg:justify-start cols-1 items-center justify-end gap-6">
                 <Link
-                    to="/"
+                    to="/tours"
                     className="flex items-center justify-center rounded-md border border-contrast bg-white px-2 py-3 text-base font-medium text-gray-900 md:py-4 md:px-2 md:text-md"
                 >
-                    Regresar
+                    Ir a todos los eventos
                 </Link>
                 <Link
                     to={"/agregar-evento/"+tour_id}

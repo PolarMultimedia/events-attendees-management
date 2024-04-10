@@ -28,7 +28,7 @@ function Attendees() {
             setList(attendees?.data)
         })
         .catch((error) => console.error(error))
-    }, []);
+    }, [url]);
 
     return (
         <>
