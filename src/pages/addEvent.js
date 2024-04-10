@@ -31,12 +31,12 @@ function RegisterEventPage () {
     return (
         <>
             <RegisterEventForm tourId={tour.id} tourName={tour.name} />
-            <div className="mt-10 flex items-center justify-center py-2">
+            <div className="mt-2 flex items-center justify-center py-2">
                 <Link
                     to={"/eventos/"+tour_id}
                     className="flex w-42 items-center justify-center rounded-lg border border-transparent bg-red-600 px-8 py-2 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
                 >
-                    Regresar
+                    Cancelar
                 </Link>
             </div>
         </>

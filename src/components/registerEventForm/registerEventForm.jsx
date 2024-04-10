@@ -79,17 +79,17 @@ function RegisterEventForm ({tourId, tourName}) {
  
     return(
         <>
-            <div className="overflow-hidden shadow sm:rounded-md">
-                <h1 className='text-center text-lg'>Agregar Evento al Tour "{tourName}"</h1>
+            <div className="overflow-hidden p-10">
+                <h1 className='text-center text-2xl font-semibold'>Agregar fecha al evento "{tourName}"</h1>
                 <form>
                     <div className="bg-white px-4 py-5 sm:p-6">
-                        <div className="grid grid-cols-6 gap-6">
-                            <div className="col-span-6 sm:col-span-3">
+                        <div className="flex flex-row justify-center">
+                            <div>
                                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                                    Nombre del Evento
+                                    Fecha
                                 </label>
                                 <input
-                                    type="text"
+                                    type="date"
                                     name="name"
                                     id="name"
                                     onChange={handleChange}
@@ -104,7 +104,7 @@ function RegisterEventForm ({tourId, tourName}) {
                 </form>
                 {
                     isSubmiting ? null :
-                    <div className="bg-gray-50 px-4 py-3 text-center sm:px-6">
+                    <div className="px-4 py-3 text-center sm:px-6">
                         <button
                             onClick={handleSubmit}
                             className="inline-flex justify-center rounded-md border border-transparent bg-gray-900 py-2 px-4 text-sm lg:text-2xl lg:font-semibold font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
@@ -119,16 +119,16 @@ function RegisterEventForm ({tourId, tourName}) {
                             <div className="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
                                 <div className="flex">
                                     <div>
-                                        <p className="font-bold">Evento registrado exitosamente en el tour {tourName}</p>
+                                        <p className="font-bold">Fecha registrada exitosamente en el evento {tourName}</p>
                                     </div>
                                 </div>
                             </div>
-                            <div className="bg-gray-50 px-4 py-3 text-center sm:px-6">
+                            <div className="px-4 py-3 text-center sm:px-6">
                                 <button
                                     onClick={handleReset}
                                     className="inline-flex justify-center rounded-md border border-transparent bg-gray-900 py-2 px-4 text-sm lg:text-2xl lg:font-semibold font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
                                     >
-                                    Agregar otro evento
+                                    Agregar otra fecha
                                 </button>
                             </div>
                         </>
