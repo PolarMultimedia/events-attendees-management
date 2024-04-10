@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import { Link, useParams } from 'react-router-dom';
 import { RegisterAttendeeForm } from "../components";
 import axios from "axios";
-import { isValidDateValue } from "@testing-library/user-event/dist/utils";
 
 function RegisterAttendeePage () {
     const { event_id } = useParams();
