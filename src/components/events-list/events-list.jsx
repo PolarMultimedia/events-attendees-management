@@ -25,8 +25,8 @@ function EventsList ({events, tourName}) {
                                 <tbody className="divide-y divide-gray-200 bg-white">
                                 {events.map((event) => (
                                     <tr key={event.id}>
-                                        <td className="py-4 pl-6 pr-3 text-sm font-medium text-gray-900 md:pl-4">
-                                            {event.name}
+                                        <td className="py-4 pl-6 pr-3 text-lg font-semibold text-gray-900 md:pl-4">
+                                        { isNaN(new Date(event.name)) ? event.name : new Date(event.name).toLocaleDateString("es-MX", {month: "long", day: "2-digit"}) }
                                         </td>
                                         <td className="relative py-4 pl-3 pr-6 text-right text-sm font-medium md:pr-4">
                                             <Link to={'/invitados/'+event.id} className="text-highlight hover:text-white border border-color-highlight rounded-md px-4 py-2 hover:bg-contrast/70">

@@ -50,7 +50,7 @@ function RegisterAttendeePage () {
     return (
         <>
             <div className="text-center px-4 pt-16 pb-10 sm:px-2 lg:px-8 lg:pt-24 lg:pb-10">
-                <h2 className="text-3xl font-bold tracking-tight text-morado_abalat sm:text-4xl">Registrar invitado a "{eventName} { isNaN(new Date(eventDate)) ? eventDate : new Date(eventDate).toLocaleDateString() }"</h2>
+                <h2 className="text-3xl font-bold tracking-tight text-morado_abalat sm:text-4xl">Registrar invitado a "{eventName} { isNaN(new Date(eventDate)) ? eventDate : new Date(eventDate).toLocaleDateString("es-MX", {month: "long", day: "2-digit"}) }"</h2>
             </div>
             <RegisterAttendeeForm event_id={event_id} />
             <div className="mt-10 flex items-center justify-center py-2">
