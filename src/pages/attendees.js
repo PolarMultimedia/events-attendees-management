@@ -26,6 +26,7 @@ function Attendees() {
     const [importing, setImporting] = useState(false);
     const [tourId, setTourId] = useState('');
     const [searchField, setSearchField] = useState('');
+    const [updateList, setUpdateList] = useState(false);
     const url = "https://events-admin-api.herokuapp.com/getAttendees/"+event_id;
     const urlEventCity = "https://events-admin-api.herokuapp.com/getEvent/"+event_id;
     const urlTourName = "https://events-admin-api.herokuapp.com/getTour/";
@@ -101,12 +102,13 @@ function Attendees() {
                 .then(tourData => {
                     setTourName(tourData.name);
                 })
+                .then(setUpdateList(false))
                 .catch(err => console.error(err));
             })
             .catch((error) => console.error(error))
         )
         .catch((error) => console.error(error))
-    }, [url, urlEventCity, urlTourName, tourId]);
+    }, [url, urlEventCity, urlTourName, tourId, updateList]);
 
     const totalAttendeesRegistered = list.filter(attendee => {
         return attendee.attendance
@@ -197,7 +199,7 @@ function Attendees() {
                                 </Link>
                             </div>
                         </div>
-                    <AttendeesListComponent list={filteredList} />
+                    <AttendeesListComponent list={filteredList} setUpdateList={setUpdateList} />
                 </div>
                 </>
             }

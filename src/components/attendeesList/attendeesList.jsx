@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-function AttendeesListComponent ({list}) {
+function AttendeesListComponent ({list, setUpdateList}) {
 
     const url = "https://events-admin-api.herokuapp.com/registerAttendance";
 
@@ -19,9 +19,8 @@ function AttendeesListComponent ({list}) {
             })
         })
         .then(response => response)
-        .then(res => res.data[0])
+        .then(setUpdateList(true))
         .catch(err => console.error(err))
-
         return false;
     }
 
